@@ -129,7 +129,7 @@ hello1: check
 		--header-size $(BOOT_HEADER_LEN) \
 		--align $(FLASH_ALIGNMENT) \
 		--version 1.2 \
-		--slot-size 0x60000 \
+		--slot-size 0x67000 \
 		$(BUILD_DIR_HELLO1)/zephyr/zephyr.bin \
 		signed-hello1.bin
 
@@ -154,7 +154,7 @@ hello2: check
 		--header-size $(BOOT_HEADER_LEN) \
 		--align $(FLASH_ALIGNMENT) \
 		--version 1.2 \
-		--slot-size 0x60000 \
+		--slot-size 0x67000 \
 		--pad \
 		$(BUILD_DIR_HELLO2)/zephyr/zephyr.bin \
 		signed-hello2.bin
@@ -166,16 +166,16 @@ clean_hello2: check
 # are hardcoded at this time.
 
 flash_boot:
-	$(PYOCD) flash -e chip -a 0 mcuboot.bin
+	$(PYOCD) flash -t nrf52 -e chip -a 0 mcuboot.bin
 
 flash_hello1:
-	$(PYOCD) flash -a 0x20000 signed-hello1.bin
+	$(PYOCD) flash -t nrf52 -a 0x0C000 signed-hello1.bin
 
 flash_hello2:
-	$(PYOCD) flash -a 0x80000 signed-hello2.bin
+	$(PYOCD) flash -t nrf52 -a 0x73000 signed-hello2.bin
 
 flash_full:
-	$(PYOCD) flash -e chip -a 0 full.bin
+	$(PYOCD) flash -t nrf52 -e chip -a 0 full.bin
 
 # These test- targets reinvoke make with the configuration set to test
 # various configurations.  This will generally be followed by using

@@ -6,6 +6,8 @@
 # ZEPHYR_GCC_VARIANT need to be set, as well as zephyr/zephyr-env.sh
 # must be sourced.
 
+BOARD=reel_board
+
 die() {
     echo error: "$@"
     exit 1
